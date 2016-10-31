@@ -1,4 +1,4 @@
-FROM php:%%PHP_VERSION%%-%%VARIANT%%
+FROM php:5.6
 
 # install the PHP extensions we need
 RUN apt-get update && apt-get install -y libpng12-dev libjpeg-dev && rm -rf /var/lib/apt/lists/* \
@@ -18,8 +18,8 @@ RUN { \
 %%VARIANT_EXTRAS%%
 VOLUME /var/www/html
 
-ENV WORDPRESS_VERSION %%WORDPRESS_VERSION%%
-ENV WORDPRESS_SHA1 %%WORDPRESS_SHA1%%
+ENV WORDPRESS_VERSION 4.6
+ENV WORDPRESS_SHA1 439f09e7a948f02f00e952211a22b8bb0502e2e2
 
 RUN set -x \
 	&& curl -o wordpress.tar.gz -fSL "https://wordpress.org/wordpress-${WORDPRESS_VERSION}.tar.gz" \
