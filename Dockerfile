@@ -17,6 +17,7 @@ RUN { \
 	} > /usr/local/etc/php/conf.d/opcache-recommended.ini
 
 RUN a2enmod rewrite expires
+RUN a2enmod vhost_alias
 
 VOLUME /var/www/html
 #RUN chgrp -R 0 /var/www/html
