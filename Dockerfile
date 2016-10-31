@@ -1,4 +1,4 @@
-FROM php:5.6-apache
+FROM php:5.6-fpm
 
 # install the PHP extensions we need
 RUN apt-get update && apt-get install -y libpng12-dev libjpeg-dev && rm -rf /var/lib/apt/lists/* \
@@ -16,8 +16,6 @@ RUN { \
 		echo 'opcache.enable_cli=1'; \
 	} > /usr/local/etc/php/conf.d/opcache-recommended.ini
 
-RUN a2enmod rewrite expires
-
 VOLUME /var/www/html
 
 ENV WORDPRESS_VERSION 4.6.1
@@ -32,8 +30,7 @@ RUN set -x \
 	&& chown -R www-data:www-data /usr/src/wordpress
 
 COPY docker-entrypoint.sh /usr/local/bin/
-#RUN ln -s usr/local/bin/docker-entrypoint.sh /entrypoint.sh # backwards compat
-COPY docker-entrypoint.sh /entrypoint.sh
+RUN ln -s usr/local/bin/docker-entrypoint.sh /entrypoint.sh # backwards compat
 
 # ENTRYPOINT resets CMD
 RUN chmod +x /entrypoint.sh
