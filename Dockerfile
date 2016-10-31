@@ -1,4 +1,4 @@
-FROM php:5.6
+FROM php:5.6-apache
 
 # install the PHP extensions we need
 RUN apt-get update && apt-get install -y libpng12-dev libjpeg-dev && rm -rf /var/lib/apt/lists/* \
@@ -15,11 +15,13 @@ RUN { \
 		echo 'opcache.fast_shutdown=1'; \
 		echo 'opcache.enable_cli=1'; \
 	} > /usr/local/etc/php/conf.d/opcache-recommended.ini
-%%VARIANT_EXTRAS%%
+
+RUN a2enmod rewrite expires
+
 VOLUME /var/www/html
 
-ENV WORDPRESS_VERSION 4.6
-ENV WORDPRESS_SHA1 439f09e7a948f02f00e952211a22b8bb0502e2e2
+ENV WORDPRESS_VERSION 4.6.1
+ENV WORDPRESS_SHA1 027e065d30a64720624a7404a1820e6c6fff1202
 
 RUN set -x \
 	&& curl -o wordpress.tar.gz -fSL "https://wordpress.org/wordpress-${WORDPRESS_VERSION}.tar.gz" \
@@ -34,4 +36,4 @@ RUN ln -s usr/local/bin/docker-entrypoint.sh /entrypoint.sh # backwards compat
 
 # ENTRYPOINT resets CMD
 ENTRYPOINT ["docker-entrypoint.sh"]
-CMD ["%%CMD%%"]
+CMD ["apache2-foreground"]
