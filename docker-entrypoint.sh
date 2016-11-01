@@ -63,6 +63,7 @@ if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROT
 EOPHP
 		chown www-data:www-data wp-config.php
 	fi
+		chown -R www-data.www-data .
 
 	# see http://stackoverflow.com/a/2705678/433558
 	sed_escape_lhs() {
