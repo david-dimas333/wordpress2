@@ -19,9 +19,6 @@ RUN { \
 RUN a2enmod rewrite expires vhost_alias
 
 VOLUME /var/www/html
-#RUN chgrp -R 0 /var/www/html
-#RUN chmod -R g+rw /var/www/html
-#RUN find /var/www/html -type d -exec chmod g+x {} +
 
 ENV WORDPRESS_VERSION 4.6.1
 ENV WORDPRESS_SHA1 027e065d30a64720624a7404a1820e6c6fff1202
@@ -34,9 +31,9 @@ RUN set -x \
 	&& rm wordpress.tar.gz \
 	&& chown -R www-data:www-data /usr/src/wordpress
 
-RUN chgrp -R 0 /usr/src/wordpress
-RUN chmod -R g+rw /usr/src/wordpress
-RUN find /usr/src/wordpress -type d -exec chmod g+x {} +
+#RUN chgrp -R 0 /usr/src/wordpress
+#RUN chmod -R g+rw /usr/src/wordpress
+#RUN find /usr/src/wordpress -type d -exec chmod g+x {} +
 
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN ln -s usr/local/bin/docker-entrypoint.sh /entrypoint.sh # backwards compat
