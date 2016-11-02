@@ -31,12 +31,8 @@ RUN set -x \
 	&& rm wordpress.tar.gz \
 	&& chown -R www-data:www-data /usr/src/wordpress
 
-#RUN chgrp -R 0 /usr/src/wordpress
-#RUN chmod -R g+rw /usr/src/wordpress
-#RUN find /usr/src/wordpress -type d -exec chmod g+x {} +
-
 COPY docker-entrypoint.sh /usr/local/bin/
-RUN ln -s usr/local/bin/docker-entrypoint.sh /entrypoint.sh # backwards compat
+RUN ln -s usr/local/bin/docker-entrypoint.sh /entrypoint.sh
 
 # ENTRYPOINT resets CMD
 RUN chmod +x /entrypoint.sh

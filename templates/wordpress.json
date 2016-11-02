@@ -12,8 +12,8 @@
   },
   "objects": [
     {
-      "kind": "DeploymentConfig",
       "apiVersion": "v1",
+      "kind": "DeploymentConfig",
       "metadata": {
         "name": "${NAME}",
         "labels": {
@@ -268,8 +268,8 @@
       "name": "NAME",
       "displayName": "Name",
       "description": "The name assigned to all of the frontend objects defined in this template.",
-      "required": true,
-      "value": "wordpress"
+      "value": "wordpress",
+      "required": true
     },
     {
       "name": "APPLICATION_DOMAIN",
