@@ -1,5 +1,4 @@
-# Digital Garage Docker image for [Wordpress](https://github.com/WordPress/WordPress) in production mode,
-and is a bit more configurable than the [official Wordpress Docker image](https://hub.docker.com/_/wordpress/).
+# Digital Garage Docker image for [Wordpress](https://github.com/WordPress/WordPress).
 This image is designed specifically to support the deployment of WordPress via Docker and Kubernetes via the Digital Garage. This image is a bit more configurable than the [official Wordpress Docker image](https://hub.docker.com/_/wordpress/).
 
 # What is WordPress?
